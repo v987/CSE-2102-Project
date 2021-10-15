@@ -63,5 +63,26 @@ public class VehicleInfo
         method = newmethod;
     }
 
+    public static void main(String args[])
+    {
+        //1st test case
+        VehicleInfo testvehicle = new VehicleInfo("Toyota", "2006", "sport", "new");
 
+        System.out.println("Model: " + testvehicle.getModel());
+        System.out.println("Year : " + testvehicle.getYear());
+        System.out.println("Type: " + testvehicle.getType());
+        System.out.println("Method: " + testvehicle.getMethod());
+        System.out.println();
+
+        testvehicle.updateModel("Ford");
+        testvehicle.updateYear("2014");
+        testvehicle.updateType("other");
+        testvehicle.updateMethod("used");
+
+        System.out.println("Model: " + testvehicle.getModel());
+        System.out.println("Year : " + testvehicle.getYear());
+        System.out.println("Type: " + testvehicle.getType());
+        System.out.println("Method: " + testvehicle.getMethod());
+
+    }
 }
