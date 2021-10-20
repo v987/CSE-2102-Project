@@ -1,4 +1,6 @@
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.io.File;
 
 public class CustomerProfDB {
     private int numCustomer;
@@ -38,15 +40,20 @@ public class CustomerProfDB {
         }
         return null;
     }
-    public void writeAllCustomerProf(){
-        /**
-         * Need to open file and append all of the customer information into it.
-         */
-        for (CustomerProf customer : customerList){
-            String result = customer.getAdminID()+customer.getFirstName()+customer.getLastName()+
-                    customer.getAddress()+customer.getPhone()+String.valueOf(customer.getIncome())+
-                    customer.getStatus()+customer.getUse();
 
+    public void writeAllCustomerProf(){
+        //File myFile = new File(fileName);
+        try{
+            FileWriter myFileWriter = new FileWriter(fileName);
+            for (CustomerProf customer : customerList){
+                String result = customer.getAdminID()+customer.getFirstName()+customer.getLastName()+
+                        customer.getAddress()+customer.getPhone()+String.valueOf(customer.getIncome())+
+                        customer.getStatus()+customer.getUse();
+                myFileWriter.append(result);
+            }
+            myFileWriter.close();
+        }catch (Exception e){
+            System.out.println("Error: could not write to file : "+fileName+ " With Error: "+ e.toString());
         }
     }
     public static void main(String []args){
