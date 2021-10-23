@@ -3,17 +3,17 @@ import java.util.Scanner;
 public class CustomerProfInterface
 {
     //Variables
-    CustomerProfDB customerdb;
-    String filepath;
+    private CustomerProfDB customerdb;
+    private String filepath;
 
-    //Class constructor************************************HAVE TO FINISH IMPLEMENTING THIS?
+    //Class constructor
     public CustomerProfInterface(String thefilepath)
     {
         filepath = thefilepath;
         customerdb = new CustomerProfDB(filepath);
     }
 
-    //Method to accept user input for what to do*******************STILL HAVE TO IMPLEMENT THIS
+    //Method to accept user input for what to do
     void getUserChoice()
     {
         //Create a scanner
@@ -21,13 +21,31 @@ public class CustomerProfInterface
         //Loop to perpetually ask user what to do
         boolean keeplooping = true;
         String adminID;
+        int choice;
         while (keeplooping)
         {
             //Ask for adminID
             System.out.print("Enter your adminID: ");
             adminID = in.nextLine();
             //Ask the user what to do
-
+            System.out.println("1) Enter a new customer");
+            System.out.println("2) Delete a customer");
+            System.out.println("3) Display a customer profile");
+            System.out.println("4) Modify a customer profile");
+            System.out.println("5) Display all customer profiles");
+            System.out.println("6) Exit interface");
+            //Do what the user said to
+            System.out.println("\n What would you like to do? (Enter corresponding integer): ");
+            choice = in.nextInt();
+            switch (choice)
+            {
+                case 1: customerdb.insertNewProfile(createNewCustomerProf(adminID)); break;
+                case 2: deleteCustomerProf(adminID); break;
+                case 3: findCustomerProf(adminID); break;
+                case 4: updateCustomerProf(adminID); break;
+                case 5: displayAllCustomerProf(adminID); break;
+                default: keeplooping = false; writeToDB();
+            }
         }
         //Close the scanner
         in.close();
@@ -80,18 +98,27 @@ public class CustomerProfInterface
     }
 
     //Method to delete a user
-    void deleteCustomerProf(String lastName, String adminID)
+    void deleteCustomerProf(String adminID)
     {
+        //Input the last name
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the last name: ");
+        String lastName = in.nextLine();
         //Output if it was unsuccessful or successful
         if (!customerdb.deleteProfile(lastName, adminID))
             System.out.println("Deletion failed!");
         else
             System.out.println("Deletion complete!");
+        in.close();
     }
 
     //Method to find a customer
-    void findCustomerProf(String lastName, String adminID)
+    void findCustomerProf(String adminID)
     {
+        //Input the last name
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the last name: ");
+        String lastName = in.nextLine();
         //Get the customer if it exists
         CustomerProf thecustomer = customerdb.findProfile(lastName, adminID);
         //Output
@@ -99,16 +126,47 @@ public class CustomerProfInterface
             System.out.println("That person does not exist or you are not authorized to find them!");
         else
             displayCustomerProf(thecustomer);
+        in.close();
     }
 
     void updateCustomerProf(String adminID)
     {
-        //Get the new customer prof
-        CustomerProf newprof = createNewCustomerProf(adminID);
-        //Delete the customer if it exists
-        customerdb.deleteProfile(newprof.getLastName(), adminID);
-        //Input the new profile
-        customerdb.insertNewProfile(newprof);
+        //Input the last name
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the last name: ");
+        String lastName = in.nextLine();
+        //Get the current CustomerProf
+        CustomerProf thecustomer = customerdb.findProfile(lastName, adminID);
+        //Ensure it isn't null
+        if (thecustomer==null)
+        {
+            System.out.println("That customer profile does not exist or you are not authorized to modify it!");
+            return;
+        }
+        //Ask user what attribute to update
+        System.out.println("Which attribute would you like to update?\n\n1) Address\n2) Phone\n3) Use\n4) Status\n5) Model\n6) Year\n7) Type\n8) Method");
+        System.out.print("Enter corresponding integer: ");
+        int choice = in.nextInt();
+        //Update what the user said to update
+        VehicleInfo thevehicleinfo = thecustomer.getVehicleInfo();
+        System.out.print("Enter the new attribute: ");
+        switch (choice)
+        {
+            case 1: thecustomer.updateAddress(in.nextLine()); break;
+            case 2: thecustomer.updatePhone(in.nextLine()); break;
+            case 3: thecustomer.updateUse(in.nextLine()); break;
+            case 4: thecustomer.updateStatus(in.nextLine()); break;
+            case 5: thevehicleinfo.updateModel(in.nextLine()); break;
+            case 6: thevehicleinfo.updateYear(in.nextLine()); break;
+            case 7: thevehicleinfo.updateType(in.nextLine()); break;
+            case 8: thevehicleinfo.updateMethod(in.nextLine());
+        }
+        //Reinsert the updated vehicle info into the customer profile
+        thecustomer.updateVehicleInfo(thevehicleinfo);
+        //Delete the old profile and insert the new one
+        customerdb.deleteProfile(lastName, adminID);
+        customerdb.insertNewProfile(thecustomer);
+        in.close();
     }
 
     void displayCustomerProf(CustomerProf thecustomer)
