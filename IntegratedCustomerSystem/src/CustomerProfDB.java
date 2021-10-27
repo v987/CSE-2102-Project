@@ -1,6 +1,8 @@
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
+import java.util.List;
 
 public class CustomerProfDB {
     private int numCustomer;
@@ -40,7 +42,9 @@ public class CustomerProfDB {
         }
         return null;
     }
-
+    public ArrayList<CustomerProf> getCustomerList(){
+        return customerList;
+    }
     public void writeAllCustomerProf(){
         //File myFile = new File(fileName);
         try{
@@ -55,6 +59,10 @@ public class CustomerProfDB {
         }catch (Exception e){
             System.out.println("Error: could not write to file : "+fileName+ " With Error: "+ e.toString());
         }
+    }
+    public void initializeDatabase(String fileName) throws IOException {
+        File myFile = new File(fileName);
+        myFile.createNewFile();
     }
     public static void main(String []args){
         System.out.println("Hello, Jeff.");
