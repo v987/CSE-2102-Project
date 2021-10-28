@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerProfInterface
@@ -11,6 +12,7 @@ public class CustomerProfInterface
     {
         filepath = thefilepath;
         customerdb = new CustomerProfDB(filepath);
+        getUserChoice();
     }
 
     //Method to accept user input for what to do
@@ -25,7 +27,7 @@ public class CustomerProfInterface
         while (keeplooping)
         {
             //Ask for adminID
-            System.out.print("Enter your adminID: ");
+            System.out.print("Enter your adminID:");
             adminID = in.nextLine();
             //Ask the user what to do
             System.out.println("1) Enter a new customer");
@@ -185,11 +187,32 @@ public class CustomerProfInterface
 
     void displayAllCustomerProf(String adminID)
     {
-
+        //Get the customer list
+        ArrayList customerlist = customerdb.getCustomerList();
+        //Traverse the list to print out all applicable customers
+        CustomerProf currentcustomer;
+        for (int i=0; i<customerlist.size(); i++)
+        {
+            //Ensure adminID matches
+            currentcustomer = (CustomerProf) customerlist.get(i);
+            if (currentcustomer.getAdminID() == adminID)
+                displayCustomerProf(currentcustomer);
+        }
     }
 
     void writeToDB()
     {
         customerdb.writeAllCustomerProf();
+    }
+
+    public static void main(String[] args)
+    {
+        //Get the filepath
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the path of the database file: ");
+        String filepath = in.nextLine();
+        in.close();
+        System.out.println(filepath);
+        CustomerProfInterface theinterface = new CustomerProfInterface(filepath);
     }
 }
