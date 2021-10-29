@@ -1,8 +1,10 @@
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.List;
+import java.util.Scanner;
 
 public class CustomerProfDB {
     private int numCustomer;
@@ -12,6 +14,11 @@ public class CustomerProfDB {
 
     public CustomerProfDB(String name){
         fileName = name;
+        try{
+            initializeDatabase(fileName);
+        }catch (Exception e){
+            System.out.println("Could not create File: " + fileName);
+        }
     }
 
     public void insertNewProfile(CustomerProf customer){
@@ -62,8 +69,29 @@ public class CustomerProfDB {
     }
     public void initializeDatabase(String fileName) throws IOException {
         File myFile = new File(fileName);
-        myFile.createNewFile();
+        if (myFile.createNewFile()){return;}
+
+        ArrayList<String> db = new ArrayList<>();
+        try{
+            FileInputStream FIS = new FileInputStream(fileName);
+            Scanner scan = new Scanner(FIS);
+            while(scan.hasNextLine()){
+                db.add(scan.nextLine());
+            }
+            scan.close();
+        }catch(Exception e){
+            System.out.println("Error while reading the file: "+ e);
+        }
+        initializeCustomerProf(db);
     }
+
+    private void initializeCustomerProf(ArrayList<String> db) {
+        // create a new constructor in CustomerProf to handle this type of batch initialization.
+        for (String customer : db){
+            customerList.add(new CustomerProf(customer));
+        }
+    }
+
     public static void main(String []args){
         System.out.println("Hello, Jeff.");
     }

@@ -21,7 +21,9 @@ public class CustomerProf
         this.use = use;
         this.vehicleInfo = vehicleInfo;
     }
-
+    public CustomerProf(String customer){
+        // Need to be implemented.
+    }
     public String getAdminID(){return adminID;}
     public float getIncome() {return income;}
     public String getAddress() {return address;}
