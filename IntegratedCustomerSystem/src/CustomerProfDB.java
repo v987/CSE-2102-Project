@@ -3,7 +3,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
-import java.util.List;
 import java.util.Scanner;
 
 public class CustomerProfDB {
@@ -12,8 +11,11 @@ public class CustomerProfDB {
     private String fileName;
     private ArrayList<CustomerProf> customerList;
 
-    public CustomerProfDB(String name){
-        fileName = name;
+    public CustomerProfDB(String Dbname){
+        fileName = Dbname;
+        customerList = new ArrayList<>();
+        numCustomer = 0;
+        currentCustomerIndex = 0;
         try{
             initializeDatabase(fileName);
         }catch (Exception e){
@@ -57,9 +59,11 @@ public class CustomerProfDB {
         try{
             FileWriter myFileWriter = new FileWriter(fileName);
             for (CustomerProf customer : customerList){
-                String result = customer.getAdminID()+customer.getFirstName()+customer.getLastName()+
-                        customer.getAddress()+customer.getPhone()+String.valueOf(customer.getIncome())+
-                        customer.getStatus()+customer.getUse();
+                String result = customer.getAdminID()+" "+customer.getFirstName()+" "+customer.getLastName()+" "+
+                        customer.getAddress()+" "+customer.getPhone()+" "+String.valueOf(customer.getIncome())+" "+
+                        customer.getStatus()+" "+customer.getUse() + " "+ customer.getVehicleInfo().getModel() + " " +
+                        customer.getVehicleInfo().getYear() + " " + customer.getVehicleInfo().getType() + " " +
+                        customer.getVehicleInfo().getMethod() + "\n";
                 myFileWriter.append(result);
             }
             myFileWriter.close();
@@ -84,15 +88,22 @@ public class CustomerProfDB {
         }
         initializeCustomerProf(db);
     }
-
     private void initializeCustomerProf(ArrayList<String> db) {
         // create a new constructor in CustomerProf to handle this type of batch initialization.
         for (String customer : db){
-            customerList.add(new CustomerProf(customer));
+            CustomerProf newCustomerProf = new CustomerProf(customer);
+            customerList.add(newCustomerProf);
+            numCustomer++;
         }
     }
 
     public static void main(String []args){
-        System.out.println("Hello, Jeff.");
+        /*System.out.println("Hello, Jeff.");
+        CustomerProfDB customerDB = new CustomerProfDB("Dbdata.txt");
+        CustomerProf newCustomer = new CustomerProf(
+                "Jeff16123", "Jude", "Remy", "77-Roxbury-Rd",
+                "8603565957", (float) 10000000000.000, "Single", "No", new VehicleInfo("Toyota", "2021", "sport", "new"));
+        customerDB.insertNewProfile(newCustomer);
+        customerDB.writeAllCustomerProf();*/
     }
 }

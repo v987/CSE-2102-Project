@@ -22,7 +22,17 @@ public class CustomerProf
         this.vehicleInfo = vehicleInfo;
     }
     public CustomerProf(String customer){
-        // Need to be implemented.
+        String[] cust = customer.split(" ");
+        System.out.println(cust+ " : " + customer);
+        adminID = cust[0];
+        firstName = cust[1];
+        lastName = cust[2];
+        address = cust[3];
+        phone = cust[4];
+        income = Float.valueOf(cust[5]);
+        status = cust[6];
+        use = cust[7];
+        vehicleInfo = new VehicleInfo(cust[8], cust[9], cust[10], cust[11]);
     }
     public String getAdminID(){return adminID;}
     public float getIncome() {return income;}
