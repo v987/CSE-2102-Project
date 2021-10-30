@@ -27,8 +27,9 @@ public class CustomerProfInterface
         //input.nextLine();
         //Loop to perpetually ask user what to do
         boolean keeplooping = true;
+        boolean tryinput = true;
         String adminID;
-        int choice;
+        int choice = 0;
         //System.out.print("Input test: ");
         //in.nextLine();
         while (keeplooping)
@@ -45,9 +46,23 @@ public class CustomerProfInterface
             System.out.println("5) Display all customer profiles");
             System.out.println("6) Exit interface");
             //Do what the user said to
-            System.out.print("\nWhat would you like to do? (Enter corresponding integer): ");
-            choice = in.nextInt();
-            in.nextLine();
+            tryinput = true;
+            while (tryinput)
+            {
+                try
+                {
+                    System.out.print("\nWhat would you like to do? (Enter corresponding integer): ");
+                    choice = in.nextInt();
+                    in.nextLine();
+                    tryinput = false;
+                }
+                catch (InputMismatchException e)
+                {
+                    in.nextLine();
+                    System.out.println("That isn't an integer!\n");
+                }
+            }
+
             switch (choice)
             {
                 case 1: customerdb.insertNewProfile(createNewCustomerProf(adminID)); System.out.println("\nSuccess!"); break;
@@ -157,28 +172,45 @@ public class CustomerProfInterface
             System.out.println("That person does not exist or you are not authorized to find them!");
         else
             displayCustomerProf(thecustomer);
+        System.out.println();
         //in.close();
     }
 
     void updateCustomerProf(String adminID)
     {
         //Input the last name
-        //Scanner in = new Scanner(System.in);
-        System.out.print("Enter the last name: ");
+        System.out.print("\nEnter the last name: ");
         String lastName = in.nextLine();
         //Get the current CustomerProf
         CustomerProf thecustomer = customerdb.findProfile(lastName, adminID);
         //Ensure it isn't null
         if (thecustomer==null)
         {
-            System.out.println("That customer profile does not exist or you are not authorized to modify it!");
+            System.out.println("That customer profile does not exist or you are not authorized to modify it!\n");
             return;
         }
         //Ask user what attribute to update
         System.out.println("Which attribute would you like to update?\n\n1) Address\n2) Phone\n3) Use\n4) Status\n5) Model\n6) Year\n7) Type\n8) Method");
-        System.out.print("Enter corresponding integer: ");
-        int choice = in.nextInt();
-        in.nextLine();
+        boolean keepasking = true;
+        int choice = 0;
+        while (keepasking)
+        {
+            try
+            {
+                System.out.print("Enter corresponding integer: ");
+                choice = in.nextInt();
+                in.nextLine();
+                if ((choice<1) || (choice>8))
+                    System.out.println("Not a valid choice!\n");
+                else
+                    keepasking = false;
+            }
+            catch (InputMismatchException e)
+            {
+                in.nextLine();
+                System.out.println("That isn't an integer!\n");
+            }
+        }
         //Update what the user said to update
         VehicleInfo thevehicleinfo = thecustomer.getVehicleInfo();
         System.out.print("Enter the new attribute: ");
@@ -198,7 +230,7 @@ public class CustomerProfInterface
         //Delete the old profile and insert the new one
         customerdb.deleteProfile(lastName, adminID);
         customerdb.insertNewProfile(thecustomer);
-        //in.close();
+        System.out.println("\nUpdate Successful!\n");
     }
 
     void displayCustomerProf(CustomerProf thecustomer)
