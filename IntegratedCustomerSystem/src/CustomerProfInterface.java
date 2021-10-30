@@ -6,28 +6,35 @@ public class CustomerProfInterface
     //Variables
     private CustomerProfDB customerdb;
     private String filepath;
+    private static Scanner in;
 
     //Class constructor
     public CustomerProfInterface(String thefilepath)
     {
         filepath = thefilepath;
         customerdb = new CustomerProfDB(filepath);
+        //in = new Scanner(System.in);
         getUserChoice();
+        //in.close();
     }
 
     //Method to accept user input for what to do
-    void getUserChoice()
+    public void getUserChoice()
     {
         //Create a scanner
-        Scanner in = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
+        //input.nextLine();
         //Loop to perpetually ask user what to do
         boolean keeplooping = true;
         String adminID;
         int choice;
+        //System.out.print("Input test: ");
+        //in.nextLine();
         while (keeplooping)
         {
             //Ask for adminID
             System.out.print("Enter your adminID:");
+            //System.out.println(in.hasNextLine());
             adminID = in.nextLine();
             //Ask the user what to do
             System.out.println("1) Enter a new customer");
@@ -39,6 +46,7 @@ public class CustomerProfInterface
             //Do what the user said to
             System.out.println("\n What would you like to do? (Enter corresponding integer): ");
             choice = in.nextInt();
+            in.nextLine();
             switch (choice)
             {
                 case 1: customerdb.insertNewProfile(createNewCustomerProf(adminID)); break;
@@ -50,12 +58,12 @@ public class CustomerProfInterface
             }
         }
         //Close the scanner
-        in.close();
+        //input.close();
     }
 
     VehicleInfo createNewVehicleInfo()
     {
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
         //Input info for their vehicle
         System.out.print("Model: ");
         String model = in.nextLine();
@@ -66,7 +74,7 @@ public class CustomerProfInterface
         System.out.print("Method: ");
         String method = in.nextLine();
         //Close the scanner
-        in.close();
+        //in.close();
         //Return a VehicleInfo object with specified attributes
         return new VehicleInfo(model, year, type, method);
     }
@@ -74,7 +82,7 @@ public class CustomerProfInterface
     CustomerProf createNewCustomerProf(String adminID)
     {
         //Create scanner
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
         //Input new info for customer
         System.out.println("Input the updated info:\n");
         System.out.print("First Name: ");
@@ -87,12 +95,13 @@ public class CustomerProfInterface
         String phone = in.nextLine();
         System.out.print("Income: $");
         float income = in.nextFloat();
+        in.nextLine();
         System.out.print("Status: ");
         String status = in.nextLine();
         System.out.print("Use: ");
         String use = in.nextLine();
         //Close scanner
-        in.close();
+        //in.close();
         //Get vehicleinfo
         VehicleInfo thevehicle = createNewVehicleInfo();
         //Create and return the customer prof
@@ -103,7 +112,7 @@ public class CustomerProfInterface
     void deleteCustomerProf(String adminID)
     {
         //Input the last name
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
         System.out.print("Enter the last name: ");
         String lastName = in.nextLine();
         //Output if it was unsuccessful or successful
@@ -111,14 +120,14 @@ public class CustomerProfInterface
             System.out.println("Deletion failed!");
         else
             System.out.println("Deletion complete!");
-        in.close();
+        //in.close();
     }
 
     //Method to find a customer
     void findCustomerProf(String adminID)
     {
         //Input the last name
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
         System.out.print("Enter the last name: ");
         String lastName = in.nextLine();
         //Get the customer if it exists
@@ -128,13 +137,13 @@ public class CustomerProfInterface
             System.out.println("That person does not exist or you are not authorized to find them!");
         else
             displayCustomerProf(thecustomer);
-        in.close();
+        //in.close();
     }
 
     void updateCustomerProf(String adminID)
     {
         //Input the last name
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
         System.out.print("Enter the last name: ");
         String lastName = in.nextLine();
         //Get the current CustomerProf
@@ -149,6 +158,7 @@ public class CustomerProfInterface
         System.out.println("Which attribute would you like to update?\n\n1) Address\n2) Phone\n3) Use\n4) Status\n5) Model\n6) Year\n7) Type\n8) Method");
         System.out.print("Enter corresponding integer: ");
         int choice = in.nextInt();
+        in.nextLine();
         //Update what the user said to update
         VehicleInfo thevehicleinfo = thecustomer.getVehicleInfo();
         System.out.print("Enter the new attribute: ");
@@ -168,7 +178,7 @@ public class CustomerProfInterface
         //Delete the old profile and insert the new one
         customerdb.deleteProfile(lastName, adminID);
         customerdb.insertNewProfile(thecustomer);
-        in.close();
+        //in.close();
     }
 
     void displayCustomerProf(CustomerProf thecustomer)
@@ -181,7 +191,12 @@ public class CustomerProfInterface
         System.out.println("Income: " + thecustomer.getIncome());
         System.out.println("Status: " + thecustomer.getStatus());
         System.out.println("Use: " + thecustomer.getUse());
-        System.out.println("Vehicle Info: " + thecustomer.getVehicleInfo());
+        //System.out.println("Vehicle Info: " + thecustomer.getVehicleInfo());
+        VehicleInfo thevehicleinfo = thecustomer.getVehicleInfo();
+        System.out.println("Model: " + thevehicleinfo.getModel());
+        System.out.println("Year: " + thevehicleinfo.getYear());
+        System.out.println("Type: " + thevehicleinfo.getType());
+        System.out.println("Method: " + thevehicleinfo.getMethod());
         System.out.println();
     }
 
@@ -208,11 +223,13 @@ public class CustomerProfInterface
     public static void main(String[] args)
     {
         //Get the filepath
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
+        in = new Scanner(System.in);
         System.out.print("Enter the path of the database file: ");
         String filepath = in.nextLine();
-        in.close();
+        //in.close();
         System.out.println(filepath);
         CustomerProfInterface theinterface = new CustomerProfInterface(filepath);
+        in.close();
     }
 }
