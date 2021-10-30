@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CustomerProfInterface
@@ -33,23 +34,23 @@ public class CustomerProfInterface
         while (keeplooping)
         {
             //Ask for adminID
-            System.out.print("Enter your adminID:");
+            System.out.print("Enter your adminID: ");
             //System.out.println(in.hasNextLine());
             adminID = in.nextLine();
             //Ask the user what to do
-            System.out.println("1) Enter a new customer");
+            System.out.println("\n1) Enter a new customer");
             System.out.println("2) Delete a customer");
             System.out.println("3) Display a customer profile");
             System.out.println("4) Modify a customer profile");
             System.out.println("5) Display all customer profiles");
             System.out.println("6) Exit interface");
             //Do what the user said to
-            System.out.println("\n What would you like to do? (Enter corresponding integer): ");
+            System.out.print("\nWhat would you like to do? (Enter corresponding integer): ");
             choice = in.nextInt();
             in.nextLine();
             switch (choice)
             {
-                case 1: customerdb.insertNewProfile(createNewCustomerProf(adminID)); break;
+                case 1: customerdb.insertNewProfile(createNewCustomerProf(adminID)); System.out.println("\nSuccess!"); break;
                 case 2: deleteCustomerProf(adminID); break;
                 case 3: findCustomerProf(adminID); break;
                 case 4: updateCustomerProf(adminID); break;
@@ -93,9 +94,27 @@ public class CustomerProfInterface
         String address = in.nextLine();
         System.out.print("Phone Number: ");
         String phone = in.nextLine();
-        System.out.print("Income: $");
-        float income = in.nextFloat();
-        in.nextLine();
+        //String incomestr = in.nextLine();
+        //Float.parseFloat(incomestr);
+        float income = 0;
+        boolean keeptrying = true;
+        //Loop in case user does not enter a float
+        while (keeptrying)
+        {
+            try
+            {
+                System.out.print("Income: $");
+                income = in.nextFloat();
+                keeptrying = false;
+                in.nextLine();
+            }
+            catch (InputMismatchException e)
+            {
+                in.nextLine();
+                System.out.println("That is not a number!\n");
+            }
+        }
+
         System.out.print("Status: ");
         String status = in.nextLine();
         System.out.print("Use: ");
@@ -113,7 +132,7 @@ public class CustomerProfInterface
     {
         //Input the last name
         //Scanner in = new Scanner(System.in);
-        System.out.print("Enter the last name: ");
+        System.out.print("\nEnter the last name: ");
         String lastName = in.nextLine();
         //Output if it was unsuccessful or successful
         if (!customerdb.deleteProfile(lastName, adminID))
@@ -121,6 +140,7 @@ public class CustomerProfInterface
         else
             System.out.println("Deletion complete!");
         //in.close();
+        System.out.println();
     }
 
     //Method to find a customer
@@ -128,7 +148,7 @@ public class CustomerProfInterface
     {
         //Input the last name
         //Scanner in = new Scanner(System.in);
-        System.out.print("Enter the last name: ");
+        System.out.print("\nEnter the last name: ");
         String lastName = in.nextLine();
         //Get the customer if it exists
         CustomerProf thecustomer = customerdb.findProfile(lastName, adminID);
@@ -183,7 +203,7 @@ public class CustomerProfInterface
 
     void displayCustomerProf(CustomerProf thecustomer)
     {
-        System.out.println("Admin ID: " + thecustomer.getAdminID());
+        System.out.println("\nAdmin ID: " + thecustomer.getAdminID());
         System.out.println("First Name : " + thecustomer.getFirstName());
         System.out.println("Last Name: " + thecustomer.getLastName());
         System.out.println("Address: " + thecustomer.getAddress());
@@ -210,9 +230,10 @@ public class CustomerProfInterface
         {
             //Ensure adminID matches
             currentcustomer = (CustomerProf) customerlist.get(i);
-            if (currentcustomer.getAdminID() == adminID)
+            if (currentcustomer.getAdminID().equals(adminID))
                 displayCustomerProf(currentcustomer);
         }
+        System.out.println("All relevant profiles displayed.\n");
     }
 
     void writeToDB()
@@ -228,7 +249,6 @@ public class CustomerProfInterface
         System.out.print("Enter the path of the database file: ");
         String filepath = in.nextLine();
         //in.close();
-        System.out.println(filepath);
         CustomerProfInterface theinterface = new CustomerProfInterface(filepath);
         in.close();
     }
