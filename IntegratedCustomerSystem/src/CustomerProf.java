@@ -21,6 +21,12 @@ public class CustomerProf
         this.use = use;
         this.vehicleInfo = vehicleInfo;
     }
+
+    /**
+     * Second constructor created to handle CustomerProfDB calls, when creating customers
+     * from the database.
+     * @param customer
+     */
     public CustomerProf(String customer){
         String[] cust = customer.split(" ");
         System.out.println(cust+ " : " + customer);
