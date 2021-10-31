@@ -29,7 +29,7 @@ public class CustomerProf
      */
     public CustomerProf(String customer){
         String[] cust = customer.split(" ");
-        System.out.println(cust+ " : " + customer);
+        //System.out.println(cust+ " : " + customer);
         adminID = cust[0];
         firstName = cust[1];
         lastName = cust[2];
@@ -51,16 +51,12 @@ public class CustomerProf
     public VehicleInfo getVehicleInfo() {return vehicleInfo;}
 
     public void updateAddress(String address) {this.address = address;}
-    public void updateAdminID(String adminID) {this.adminID = adminID;}
-    public void updateFirstName(String firstName) {this.firstName = firstName;}
-    public void updateLastName(String lastName) {this.lastName = lastName;}
-    public void updateIncome(float income) {this.income = income;}
+    private void updateAdminID(String adminID) {this.adminID = adminID;}
+    private void updateFirstName(String firstName) {this.firstName = firstName;}
+    private void updateLastName(String lastName) {this.lastName = lastName;}
+    private void updateIncome(float income) {this.income = income;}
     public void updatePhone(String phone) {this.phone = phone;}
     public void updateStatus(String status) {this.status = status;}
     public void updateUse(String use) {this.use = use;}
     public void updateVehicleInfo(VehicleInfo vehicleInfo) {this.vehicleInfo = vehicleInfo;}
-
-    public static void main(String[] args){
-        System.out.println("Hello, It's Jeff.");
-    }
 }
