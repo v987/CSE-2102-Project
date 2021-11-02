@@ -107,6 +107,7 @@ public class CustomerProfDB {
      *  the database file, which is provided as input to the system at startup.
      */
     public void writeAllCustomerProf(){
+        //File myFile = new File(fileName);
         try{
             FileWriter myFileWriter = new FileWriter(fileName);
             for (CustomerProf customer : customerList){
@@ -166,13 +167,13 @@ public class CustomerProfDB {
      * @param args
      */
     public static void main(String []args){
-
-        /*CustomerProfDB customerDB = new CustomerProfDB("Dbdata.txt");
+        /*
+        CustomerProfDB customerDB = new CustomerProfDB("Dbdata.txt");
         CustomerProf newCustomer = new CustomerProf(
                 "Jeff16123", "Jude", "Remy", "77-Roxbury-Rd",
                 "8603565957", (float) 10000000000.000, "Single", "No", new VehicleInfo("Toyota", "2021", "sport", "new"));
         customerDB.insertNewProfile(newCustomer);
-        customerDB.writeAllCustomerProf();*/
-        
+        customerDB.writeAllCustomerProf();
+        */
     }
 }

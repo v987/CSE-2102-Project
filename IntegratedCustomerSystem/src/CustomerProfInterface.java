@@ -100,7 +100,7 @@ public class CustomerProfInterface
         //Create scanner
         //Scanner in = new Scanner(System.in);
         //Input new info for customer
-        System.out.println("Input the updated info:\n");
+        //System.out.println("Input the updated info:\n");
         System.out.print("First Name: ");
         String firstName = in.nextLine();
         System.out.print("Last Name: ");
