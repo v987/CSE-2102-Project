@@ -29,7 +29,6 @@ public class CustomerProf
      */
     public CustomerProf(String customer){
         String[] cust = customer.split(" ");
-        //System.out.println(cust+ " : " + customer);
         adminID = cust[0];
         firstName = cust[1];
         lastName = cust[2];

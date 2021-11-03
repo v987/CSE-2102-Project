@@ -1,5 +1,6 @@
-Jeff16123 Jeff Remy 77RoxburyRd 8603565957 1.0E10 Single No Toyota 2006 sport new
-Jeff16123 John Remy 77RoxburyRd 8603565759 1.0E10 Single No Toyota 2004 sport new
-Jeff16123 Jude Remy 77RoxburyRd 8603565957 1.0E10 Single No Toyota 2021 sport new
-Jeff16123 Jude Remy 77-Roxbury-Rd 8603565957 1.0E10 Single No Toyota 2021 sport new
-Jeff16123 Jude Remy 77-Roxbury-Rd 8603565957 1.0E10 Single No Toyota 2021 sport new
+PA1 Vlaho Munira 32-Brown-Blvd 8002341623 40000 Active Personal Toyota 2013 Sedan Used
+PA2 Velibor Marloes 76-Little-Street 8002338912 60000 Inactive Business Nissan 2013 Sport Certified Pre-owned
+PA2 Zeus Payam 10-Needmore-Street 8023341623 100000 Active Both Lexus 2019 Other Other
+PA1 Floro Mirinda 6517-Nearest-Street 8126125423 80000 Inactive Business Honda 2017 Hatchback Used
+PA2 Roosevelt Intan 1001-Brown-Ave 8126742233 60000 Inactive Both Ford 2018 Sedan Other
+PA1 Safa Javi 6007-Research-Ave 8259841623 400000 Active Personal Ferrari 2020 Sport New
