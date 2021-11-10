@@ -77,8 +77,7 @@ public class CustomerProfInterface
         //input.close();
     }
 
-    VehicleInfo createNewVehicleInfo()
-    {
+    VehicleInfo createNewVehicleInfo() {
         //Scanner in = new Scanner(System.in);
         //Input info for their vehicle
         String numbers = "0123456789";
@@ -106,8 +105,18 @@ public class CustomerProfInterface
             }
             System.out.println("Not a valid year, please enter a valid year like 1234: ");
         }
-        System.out.print("Type: ");
-        String type = in.nextLine();
+        boolean keeptrying = true;
+        String type = "";
+        while (keeptrying)
+        {
+            System.out.print("Type: ");
+            type = in.nextLine();
+            //Type of vehicle, must select from: sedan, hatchback, luxury, sport, other
+            if (type.equals("sedan") || type.equals("hatchback") || type.equals("luxury") || type.equals("sport") || type.equals("other"))
+                keeptrying = false;
+            else
+                System.out.println("That isn't a valid choice! Valid choices include hatchback, luxury, sport, and other.\n");
+        }
         System.out.print("Method: ");
         String method = in.nextLine();
         while(!allowedMethod.contains(method)){
@@ -147,7 +156,7 @@ public class CustomerProfInterface
                 }
                 break;
             }
-            System.out.println("Not a valid year, please enter a valid year like 1234: ");
+            System.out.println("Not a valid phone number, please enter a valid year like 1234567899: ");
         }
         float income = 0;
         boolean keeptrying = true;
@@ -168,10 +177,29 @@ public class CustomerProfInterface
             }
         }
 
-        System.out.print("Status: ");
-        String status = in.nextLine();
-        System.out.print("Use: ");
-        String use = in.nextLine();
+        keeptrying = true;
+        String status = "";
+        while (keeptrying)
+        {
+            System.out.print("Status: ");
+            status = in.nextLine();
+            if (status.equals("Active") || status.equals("Inactive"))
+                keeptrying = false;
+            else
+                System.out.println("That isn't a valid choice! Valid choices are Active and Inactive.\n");
+        }
+
+        keeptrying = true;
+        String use = "";
+        while (keeptrying)
+        {
+            System.out.print("Use: ");
+            use = in.nextLine();
+            if (use.equals("Business") || use.equals("Personal") || use.equals("Both"))
+                keeptrying = false;
+            else
+                System.out.println("That isn't a valid choice! Valid choices are Business, Personal, and Both.\n");
+        }
         //Close scanner
         //in.close();
         //Get vehicleinfo
