@@ -81,14 +81,39 @@ public class CustomerProfInterface
     {
         //Scanner in = new Scanner(System.in);
         //Input info for their vehicle
+        String numbers = "0123456789";
+        ArrayList<String> allowedMethod = new ArrayList<>();
+        allowedMethod.add("new");
+        allowedMethod.add("certified pre-owned");
+        allowedMethod.add("used");
+        allowedMethod.add("other");
+
         System.out.print("Model: ");
         String model = in.nextLine();
         System.out.print("Year: ");
-        String year = in.nextLine();
+        String year;
+        while(true){
+            year = in.nextLine();
+            if (year.length() == 4){
+                for (int i = 0; i < year.length(); i++){
+                    for (int j = 0; j < year.length(); j++){
+                        if (year.charAt(i) == numbers.charAt(j)){
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+            System.out.println("Not a valid year, please enter a valid year like 1234: ");
+        }
         System.out.print("Type: ");
         String type = in.nextLine();
         System.out.print("Method: ");
         String method = in.nextLine();
+        while(!allowedMethod.contains(method)){
+            System.out.println("Please select one of the following: [new, certified pre-owned, used, other]");
+            method = in.nextLine();
+        }
         //Close the scanner
         //in.close();
         //Return a VehicleInfo object with specified attributes
@@ -101,6 +126,7 @@ public class CustomerProfInterface
         //Scanner in = new Scanner(System.in);
         //Input new info for customer
         //System.out.println("Input the updated info:\n");
+        String numbers = "0123456789";
         System.out.print("First Name: ");
         String firstName = in.nextLine();
         System.out.print("Last Name: ");
@@ -109,8 +135,20 @@ public class CustomerProfInterface
         String address = in.nextLine();
         System.out.print("Phone Number: ");
         String phone = in.nextLine();
-        //String incomestr = in.nextLine();
-        //Float.parseFloat(incomestr);
+        while(true){
+            phone = in.nextLine();
+            if (phone.length() == 10){
+                for (int i = 0; i < phone.length(); i++){
+                    for (int j = 0; j < phone.length(); j++){
+                        if (phone.charAt(i) == numbers.charAt(j)){
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+            System.out.println("Not a valid year, please enter a valid year like 1234: ");
+        }
         float income = 0;
         boolean keeptrying = true;
         //Loop in case user does not enter a float

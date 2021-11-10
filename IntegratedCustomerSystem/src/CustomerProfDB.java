@@ -11,7 +11,6 @@ public class CustomerProfDB {
     private String fileName;
     private ArrayList<CustomerProf> customerList;
 
-
     /**
      *  This is a constructor method which accepts
      *  the name of the file in which the customer profiles will be stored.
