@@ -103,7 +103,8 @@ public class CustomerProfInterface
                 }
                 break;
             }
-            System.out.println("Not a valid year, please enter a valid year like 1234: ");
+            System.out.println("Not a valid phone number, please enter a valid phone number like 1234567890: ");
+            phone = in.nextLine();
         }
         boolean keeptrying = true;
         String type = "";
@@ -144,19 +145,21 @@ public class CustomerProfInterface
         String address = in.nextLine();
         System.out.print("Phone Number: ");
         String phone = in.nextLine();
-        while(true){
+        while(phone.length() != 10){
+            System.out.println("Not a valid phone number, please enter a valid year like 1234567899: ");
             phone = in.nextLine();
-            if (phone.length() == 10){
-                for (int i = 0; i < phone.length(); i++){
-                    for (int j = 0; j < phone.length(); j++){
-                        if (phone.charAt(i) == numbers.charAt(j)){
-                            break;
-                        }
+            boolean state = false;
+            for (int i = 0; i < phone.length(); i++){
+                for (int j = 0; j < phone.length(); j++){
+                    if (phone.charAt(i) == numbers.charAt(j)){
+                        state = true;
+                    } else{
+                        state = false;
+                        break;
                     }
                 }
-                break;
+                if (!state){break;}
             }
-            System.out.println("Not a valid phone number, please enter a valid year like 1234567899: ");
         }
         float income = 0;
         boolean keeptrying = true;
