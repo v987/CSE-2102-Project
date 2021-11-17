@@ -103,8 +103,8 @@ public class CustomerProfInterface
                 }
                 break;
             }
-            System.out.println("Not a valid phone number, please enter a valid phone number like 1234567890: ");
-            phone = in.nextLine();
+            System.out.println("Not a valid phone number, please enter a valid year like 1234: ");
+            year = in.nextLine();
         }
         boolean keeptrying = true;
         String type = "";
