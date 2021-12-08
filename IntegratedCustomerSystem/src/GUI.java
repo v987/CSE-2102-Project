@@ -71,9 +71,11 @@ public class GUI {
         frame.setVisible(true);
     }
 
+
     CustomerProf createProfile()
     {
-        return null;//****REPLACE THIS
+        CreateProfile profile = new CreateProfile();
+        return null;
     }
 
     void deleteProfile()

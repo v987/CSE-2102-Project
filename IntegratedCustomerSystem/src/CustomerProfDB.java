@@ -36,6 +36,7 @@ public class CustomerProfDB {
     public void insertNewProfile(CustomerProf customer){
         customerList.add(customer);
         numCustomer += 1;
+        System.out.println("New profile Added!");
     }
 
     /**
@@ -118,6 +119,7 @@ public class CustomerProfDB {
                 myFileWriter.append(result);
             }
             myFileWriter.close();
+            System.out.println("Success Writing to Database!!!");
         }catch (Exception e){
             System.out.println("Error: could not write to file : "+fileName+ " With Error: "+ e.toString());
         }
