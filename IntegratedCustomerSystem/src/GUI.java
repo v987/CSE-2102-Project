@@ -72,10 +72,11 @@ public class GUI {
     }
 
 
-    CustomerProf createProfile()
+    void createProfile()
     {
         CreateProfile profile = new CreateProfile();
-        return null;
+        customerdb = new CustomerProfDB(filepath);
+        mainMenu();
     }
 
     void deleteProfile()
@@ -153,7 +154,8 @@ public class GUI {
 
     void updateProfile()
     {
-
+        UpdateProfile uf = new UpdateProfile(customerdb);
+        customerdb = new CustomerProfDB(filepath);
     }
 
     void findProfile()
@@ -336,7 +338,7 @@ public class GUI {
 
     void displayAllProfiles()
     {
-
+        DisplayAllProfile uf = new DisplayAllProfile(customerdb);
     }
 
     public static void main(String s[]) {
@@ -348,8 +350,6 @@ public class GUI {
         //String filepath = "D:/db.txt";
         GUI thegui = new GUI(filepath);
         in.close();
-
-
         /*
         JFrame frame = new JFrame("JFrame Example");
         JPanel panel = new JPanel();
@@ -364,7 +364,6 @@ public class GUI {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
          */
     }
 } 

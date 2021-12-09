@@ -21,6 +21,24 @@ public class CreateProfile extends JFrame{
 
     public CreateProfile() {
         //this.addressField = addressField;
+        typeField.addItem("sedan");
+        typeField.addItem("hatchback");
+        typeField.addItem("luxury");
+        typeField.addItem("sport");
+        typeField.addItem("other");
+
+        useField.addItem("Busenisse");
+        useField.addItem("Personal");
+        useField.addItem("Both");
+
+        statusField.addItem("Active");
+        statusField.addItem("Inactive");
+
+        methodField.addItem("New");
+        methodField.addItem("Certified Pre-own");
+        methodField.addItem("Used");
+        methodField.addItem("Other");
+
         setContentPane(Jpanel);
         setTitle("Creating Profile");
         setSize(350, 550);
