@@ -255,10 +255,22 @@ public class GUI {
         thebox.add(invisiblelabel);
         //Add box to the frame
         frame.add(thebox);
-
         frame.setSize(500, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //Find button action listener
+        findbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CustomerProf theprofile = customerdb.findProfile(lastnameinput.getText(), adminidinput.getText());
+                //If it is null, then we could not find the profile
+                if (theprofile==null)
+                    couldNotFindProfile();
+                else
+                    displayOneProfile(theprofile);
+                frame.dispose();
+            }
+        });
     }
 
     void couldNotFindProfile()
@@ -286,10 +298,22 @@ public class GUI {
         frame.setSize(500, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //Ok button action listener
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Make the main menu visible
+                mainframe.setVisible(true);
+                //Dispose of this window
+                frame.dispose();
+            }
+        });
     }
 
     void displayOneProfile(CustomerProf profile)
     {
+        //Get the vehicle info from the profile
+        VehicleInfo thevehicle = profile.getVehicleInfo();
         //Create frame
         JFrame frame = new JFrame("Customer Profile");
         JPanel data = new JPanel(new GridLayout(13, 2));
@@ -298,103 +322,105 @@ public class GUI {
         JLabel adminid = new JLabel("Admin ID:");
         adminid.setFont(adminid.getFont().deriveFont(24.0f));
         data.add(adminid);
-        JTextField adminidoutput = new JTextField("admin id");
+        JTextField adminidoutput = new JTextField(profile.getAdminID());
         adminidoutput.setFont(adminidoutput.getFont().deriveFont(24.0f));
         data.add(adminidoutput);
         //FIRST NAME
         JLabel firstname = new JLabel("First Name:");
         firstname.setFont(adminid.getFont());
         data.add(firstname);
-        JTextField firstnameoutput = new JTextField("first name");
+        JTextField firstnameoutput = new JTextField(profile.getFirstName());
         firstnameoutput.setFont(adminidoutput.getFont());
         data.add(firstnameoutput);
         //LAST NAME
         JLabel lastname = new JLabel("Last Name:");
         lastname.setFont(adminid.getFont());
         data.add(lastname);
-        JTextField lastnameoutput = new JTextField("last name");
+        JTextField lastnameoutput = new JTextField(profile.getLastName());
         lastnameoutput.setFont(adminidoutput.getFont());
         data.add(lastnameoutput);
         //ADDRESS
         JLabel address = new JLabel("Address:");
         address.setFont(adminid.getFont());
         data.add(address);
-        JTextField addressoutput = new JTextField("address");
+        JTextField addressoutput = new JTextField(profile.getAddress());
         addressoutput.setFont(adminidoutput.getFont());
         data.add(addressoutput);
         //PHONE
         JLabel phone = new JLabel("Phone:");
         phone.setFont(adminid.getFont());
         data.add(phone);
-        JTextField phoneoutput = new JTextField("phone");
+        JTextField phoneoutput = new JTextField(profile.getPhone());
         phoneoutput.setFont(adminidoutput.getFont());
         data.add(phoneoutput);
         //INCOME
         JLabel income = new JLabel("Income:");
         income.setFont(adminid.getFont());
         data.add(income);
-        JTextField incomeoutput = new JTextField("income");
+        JTextField incomeoutput = new JTextField(String.valueOf(profile.getIncome()));
         incomeoutput.setFont(adminidoutput.getFont());
         data.add(incomeoutput);
         //USE
         JLabel use = new JLabel("Use:");
         use.setFont(adminid.getFont());
         data.add(use);
-        JTextField useoutput = new JTextField("use");
+        JTextField useoutput = new JTextField(profile.getUse());
         useoutput.setFont(adminidoutput.getFont());
         data.add(useoutput);
         //STATUS
         JLabel status = new JLabel("Status:");
         status.setFont(adminid.getFont());
         data.add(status);
-        JTextField statusoutput = new JTextField("status");
+        JTextField statusoutput = new JTextField(profile.getStatus());
         statusoutput.setFont(adminidoutput.getFont());
         data.add(statusoutput);
         //MODEL
         JLabel model = new JLabel("Model:");
         model.setFont(adminid.getFont());
         data.add(model);
-        JTextField modeloutput = new JTextField("model");
+        JTextField modeloutput = new JTextField(thevehicle.getModel());
         modeloutput.setFont(adminidoutput.getFont());
         data.add(modeloutput);
         //YEAR
         JLabel year = new JLabel("Year:");
         year.setFont(adminid.getFont());
         data.add(year);
-        JTextField yearoutput = new JTextField("year");
+        JTextField yearoutput = new JTextField(thevehicle.getYear());
         yearoutput.setFont(adminidoutput.getFont());
         data.add(yearoutput);
         //TYPE
         JLabel type = new JLabel("Type:");
         type.setFont(adminid.getFont());
         data.add(type);
-        JTextField typeoutput = new JTextField("type");
+        JTextField typeoutput = new JTextField(thevehicle.getType());
         typeoutput.setFont(adminidoutput.getFont());
         data.add(typeoutput);
         //METHOD
         JLabel method = new JLabel("Method:");
         method.setFont(adminid.getFont());
         data.add(method);
-        JTextField methodoutput = new JTextField("method");
+        JTextField methodoutput = new JTextField(thevehicle.getMethod());
         methodoutput.setFont(adminidoutput.getFont());
         data.add(methodoutput);
         //Close button
         JButton close = new JButton("Close");
         close.setFont(close.getFont().deriveFont(28.0f));
         data.add(close);
-        //Text fields
-
-
-
-
-
-
-
         //Add the box to the frame
         frame.add(data);
         frame.setSize(500, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //Close button action listener
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Make the main menu visible
+                mainframe.setVisible(true);
+                //Dispose of this window
+                frame.dispose();
+            }
+        });
     }
 
     void displayAllProfiles()
