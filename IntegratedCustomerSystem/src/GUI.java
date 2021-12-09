@@ -7,10 +7,11 @@ import javax.swing.*;
 public class GUI {
 
     //Variables
-    private CustomerProfDB customerdb;
-    private String filepath;
+    //private CustomerProfDB customerdb;
+    static String filepath;
     private static Scanner in;
     static JFrame mainframe = new JFrame("Integrated Customer System");
+    static CustomerProfDB customerdb;
 
     public GUI(String thefilepath)
     {
@@ -112,9 +113,7 @@ public class GUI {
 
     void createProfile()
     {
-
         CreateProfile profile = new CreateProfile();
-        customerdb = new CustomerProfDB(filepath);
     }
 
     void deleteProfile()
@@ -261,6 +260,7 @@ public class GUI {
         findbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(lastnameinput.getText() + adminidinput.getText());
                 CustomerProf theprofile = customerdb.findProfile(lastnameinput.getText(), adminidinput.getText());
                 //If it is null, then we could not find the profile
                 if (theprofile==null)
@@ -431,8 +431,8 @@ public class GUI {
 
         //Get the filepath
         in = new Scanner(System.in);
-        //System.out.print("Enter the path of the database file: ");
-        String filepath = "Dbdata.txt";//in.nextLine();
+        System.out.print("Enter the path of the database file: ");
+        String filepath = in.nextLine();
         //String filepath = "D:/db.txt";
         GUI thegui = new GUI(filepath);
         in.close();

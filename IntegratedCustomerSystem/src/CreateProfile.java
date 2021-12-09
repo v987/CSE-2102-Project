@@ -68,9 +68,9 @@ public class CreateProfile extends JFrame{
 
                 System.out.println(method);
                 //pushData(data);
-                CustomerProfDB cdb = new CustomerProfDB("Dbdata.txt");
-                cdb.insertNewProfile(new CustomerProf(admin, fName, lName, address, phone, income, status, use, new VehicleInfo(model, year, type, method)));
-                cdb.writeAllCustomerProf();
+                //CustomerProfDB cdb = new CustomerProfDB(GUI.filepath);
+                GUI.customerdb.insertNewProfile(new CustomerProf(admin, fName, lName, address, phone, income, status, use, new VehicleInfo(model, year, type, method)));
+                GUI.customerdb.writeAllCustomerProf();
                 CreateProfile.super.setVisible(false);
                 new Status("Profile Created!");
             }
