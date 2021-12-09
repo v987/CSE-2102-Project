@@ -115,7 +115,6 @@ public class GUI {
 
         CreateProfile profile = new CreateProfile();
         customerdb = new CustomerProfDB(filepath);
-        //mainMenu();
     }
 
     void deleteProfile()
@@ -432,8 +431,8 @@ public class GUI {
 
         //Get the filepath
         in = new Scanner(System.in);
-        System.out.print("Enter the path of the database file: ");
-        String filepath = in.nextLine();
+        //System.out.print("Enter the path of the database file: ");
+        String filepath = "Dbdata.txt";//in.nextLine();
         //String filepath = "D:/db.txt";
         GUI thegui = new GUI(filepath);
         in.close();

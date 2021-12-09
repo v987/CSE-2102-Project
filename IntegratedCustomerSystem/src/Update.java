@@ -18,7 +18,7 @@ public class Update extends JFrame{
 
         setContentPane(Jpanel);
         setTitle("Update Profile");
-        setSize(150, 350);
+        setSize(350, 550);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         submitButton.addActionListener(new ActionListener() {
@@ -59,6 +59,8 @@ public class Update extends JFrame{
                         throw new IllegalStateException("Unexpected value: " + field);
                 }
                 db.writeAllCustomerProf();
+                new Status("Update Completed!");
+                Update.super.setVisible(false);
             }
         });
     }

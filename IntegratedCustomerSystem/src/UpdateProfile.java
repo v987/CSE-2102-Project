@@ -23,7 +23,7 @@ public class UpdateProfile extends JFrame{
 
         setContentPane(Jpanel);
         setTitle("Update Profile");
-        setSize(150, 350);
+        setSize(350, 550);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
@@ -38,6 +38,7 @@ public class UpdateProfile extends JFrame{
                 String lastName = lastNameField.getText();
                 String field = (String) updateComboField.getSelectedItem();
                 new Update(db, admin, lastName, field);
+                UpdateProfile.super.setVisible(false);
             }
         });
     }

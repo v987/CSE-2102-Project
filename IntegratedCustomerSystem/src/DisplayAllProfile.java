@@ -23,7 +23,7 @@ public class DisplayAllProfile extends JFrame {
     public DisplayAllProfile(CustomerProfDB db){
         setContentPane(Jpanel);
         setTitle("Display All Profile");
-        setSize(150, 350);
+        setSize(550, 650);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         ArrayList<CustomerProf> customerList = db.getCustomerList();
@@ -35,6 +35,11 @@ public class DisplayAllProfile extends JFrame {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (index >= customerList.size()){
+                    DisplayAllProfile.super.setVisible(false);
+                    new Status("No More Customer!");
+                    return;
+                }
                 adminField.setText(customerList.get(index).getAdminID());
                 fNameField.setText(customerList.get(index).getFirstName());
                 LnameField.setText(customerList.get(index).getLastName());
@@ -48,7 +53,6 @@ public class DisplayAllProfile extends JFrame {
                 typeField.setText(customerList.get(index).getVehicleInfo().getType());
                 methodField.setText(customerList.get(index).getVehicleInfo().getMethod());
                 index++;
-                if (index >= customerList.size()){return;}
             }
         });
     }
