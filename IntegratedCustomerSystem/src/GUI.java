@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -8,6 +10,7 @@ public class GUI {
     private CustomerProfDB customerdb;
     private String filepath;
     private static Scanner in;
+    static JFrame mainframe = new JFrame("Integrated Customer System");
 
     public GUI(String thefilepath)
     {
@@ -19,7 +22,7 @@ public class GUI {
     void mainMenu()
     {
         //Create the frame
-        JFrame frame = new JFrame("Integrated Customer System");
+        //JFrame frame = new JFrame("Integrated Customer System");
         //Create the box
         Box thebox = Box.createVerticalBox();
         //Create the button group
@@ -63,20 +66,56 @@ public class GUI {
         JButton selectbutton = new JButton("Select");
         selectbutton.setFont(selectbutton.getFont().deriveFont(28f));
         selectbutton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //Action Listener for the button
+        selectbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean shoulddispose = false;
+                //Check each radio button to see which one is selected
+                mainframe.setVisible(false);
+                if (createprofilerb.isSelected()) {
+                    createProfile();
+                    shoulddispose = true;
+                }
+                else if (deleteprofilerb.isSelected()) {
+                    deleteProfile();
+                    customerdb.writeAllCustomerProf();
+                    shoulddispose = true;
+                }
+                else if (updateprofilerb.isSelected()) {
+                    updateProfile();
+                    shoulddispose = true;
+                }
+                else if (findprofilerb.isSelected()) {
+                    findProfile();
+                    shoulddispose = true;
+                }
+                else if (displayallprofilerb.isSelected()) {
+                    displayAllProfiles();
+                    shoulddispose = true;
+                }
+                /*
+                if (shoulddispose)
+                    frame.dispose();
+
+                 */
+            }
+        });
         thebox.add(selectbutton);
         //Add box to the frame
-        frame.add(thebox);
-        frame.setSize(500, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        mainframe.add(thebox);
+        mainframe.setSize(500, 600);
+        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainframe.setVisible(true);
     }
 
 
     void createProfile()
     {
+
         CreateProfile profile = new CreateProfile();
         customerdb = new CustomerProfDB(filepath);
-        mainMenu();
+        //mainMenu();
     }
 
     void deleteProfile()
@@ -119,6 +158,17 @@ public class GUI {
         frame.setSize(500, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //Delete button action listener
+        deletebutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean result = customerdb.deleteProfile(lastnameinput.getText(), adminidinput.getText());
+                //Show result window
+                deleteResult(result);
+                //Dispose of this frame
+                frame.dispose();
+            }
+        });
     }
 
     void deleteResult(boolean result)
@@ -149,6 +199,17 @@ public class GUI {
         frame.setSize(500, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //Ok button action listener
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Go back to the main menu
+                //mainMenu();
+                mainframe.setVisible(true);
+                //Dispose of this frame
+                frame.dispose();
+            }
+        });
     }
 
 

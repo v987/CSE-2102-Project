@@ -42,7 +42,7 @@ public class CreateProfile extends JFrame{
         setContentPane(Jpanel);
         setTitle("Creating Profile");
         setSize(350, 550);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         methodField.addItem("Cash");
         methodField.addItem("Finance");
         setVisible(true);
@@ -71,7 +71,7 @@ public class CreateProfile extends JFrame{
                 CustomerProfDB cdb = new CustomerProfDB("Dbdata.txt");
                 cdb.insertNewProfile(new CustomerProf(admin, fName, lName, address, phone, income, status, use, new VehicleInfo(model, year, type, method)));
                 cdb.writeAllCustomerProf();
-
+                GUI.mainframe.setVisible(true);
             }
         });
         //
