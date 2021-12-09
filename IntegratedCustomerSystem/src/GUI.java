@@ -71,35 +71,18 @@ public class GUI {
         selectbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean shoulddispose = false;
                 //Check each radio button to see which one is selected
                 mainframe.setVisible(false);
-                if (createprofilerb.isSelected()) {
+                if (createprofilerb.isSelected())
                     createProfile();
-                    shoulddispose = true;
-                }
-                else if (deleteprofilerb.isSelected()) {
+                else if (deleteprofilerb.isSelected())
                     deleteProfile();
-                    customerdb.writeAllCustomerProf();
-                    shoulddispose = true;
-                }
-                else if (updateprofilerb.isSelected()) {
+                else if (updateprofilerb.isSelected())
                     updateProfile();
-                    shoulddispose = true;
-                }
-                else if (findprofilerb.isSelected()) {
+                else if (findprofilerb.isSelected())
                     findProfile();
-                    shoulddispose = true;
-                }
-                else if (displayallprofilerb.isSelected()) {
+                else if (displayallprofilerb.isSelected())
                     displayAllProfiles();
-                    shoulddispose = true;
-                }
-                /*
-                if (shoulddispose)
-                    frame.dispose();
-
-                 */
             }
         });
         thebox.add(selectbutton);
@@ -160,7 +143,10 @@ public class GUI {
         deletebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //delete it
                 boolean result = customerdb.deleteProfile(lastnameinput.getText(), adminidinput.getText());
+                //Rewrite the database file to reflect the changes
+                customerdb.writeAllCustomerProf();
                 //Show result window
                 deleteResult(result);
                 //Dispose of this frame
