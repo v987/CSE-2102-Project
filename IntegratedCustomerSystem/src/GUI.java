@@ -244,7 +244,6 @@ public class GUI {
         findbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(lastnameinput.getText() + adminidinput.getText());
                 CustomerProf theprofile = customerdb.findProfile(lastnameinput.getText(), adminidinput.getText());
                 //If it is null, then we could not find the profile
                 if (theprofile==null)
@@ -307,6 +306,7 @@ public class GUI {
         data.add(adminid);
         JTextField adminidoutput = new JTextField(profile.getAdminID());
         adminidoutput.setFont(adminidoutput.getFont().deriveFont(24.0f));
+        adminidoutput.setEditable(false);
         data.add(adminidoutput);
         //FIRST NAME
         JLabel firstname = new JLabel("First Name:");
@@ -314,6 +314,7 @@ public class GUI {
         data.add(firstname);
         JTextField firstnameoutput = new JTextField(profile.getFirstName());
         firstnameoutput.setFont(adminidoutput.getFont());
+        firstnameoutput.setEditable(false);
         data.add(firstnameoutput);
         //LAST NAME
         JLabel lastname = new JLabel("Last Name:");
@@ -321,6 +322,7 @@ public class GUI {
         data.add(lastname);
         JTextField lastnameoutput = new JTextField(profile.getLastName());
         lastnameoutput.setFont(adminidoutput.getFont());
+        lastnameoutput.setEditable(false);
         data.add(lastnameoutput);
         //ADDRESS
         JLabel address = new JLabel("Address:");
@@ -328,6 +330,7 @@ public class GUI {
         data.add(address);
         JTextField addressoutput = new JTextField(profile.getAddress());
         addressoutput.setFont(adminidoutput.getFont());
+        addressoutput.setEditable(false);
         data.add(addressoutput);
         //PHONE
         JLabel phone = new JLabel("Phone:");
@@ -335,6 +338,7 @@ public class GUI {
         data.add(phone);
         JTextField phoneoutput = new JTextField(profile.getPhone());
         phoneoutput.setFont(adminidoutput.getFont());
+        phoneoutput.setEditable(false);
         data.add(phoneoutput);
         //INCOME
         JLabel income = new JLabel("Income:");
@@ -342,6 +346,7 @@ public class GUI {
         data.add(income);
         JTextField incomeoutput = new JTextField(String.valueOf(profile.getIncome()));
         incomeoutput.setFont(adminidoutput.getFont());
+        incomeoutput.setEditable(false);
         data.add(incomeoutput);
         //USE
         JLabel use = new JLabel("Use:");
@@ -349,6 +354,7 @@ public class GUI {
         data.add(use);
         JTextField useoutput = new JTextField(profile.getUse());
         useoutput.setFont(adminidoutput.getFont());
+        useoutput.setEditable(false);
         data.add(useoutput);
         //STATUS
         JLabel status = new JLabel("Status:");
@@ -356,6 +362,7 @@ public class GUI {
         data.add(status);
         JTextField statusoutput = new JTextField(profile.getStatus());
         statusoutput.setFont(adminidoutput.getFont());
+        statusoutput.setEditable(false);
         data.add(statusoutput);
         //MODEL
         JLabel model = new JLabel("Model:");
@@ -363,6 +370,7 @@ public class GUI {
         data.add(model);
         JTextField modeloutput = new JTextField(thevehicle.getModel());
         modeloutput.setFont(adminidoutput.getFont());
+        modeloutput.setEditable(false);
         data.add(modeloutput);
         //YEAR
         JLabel year = new JLabel("Year:");
@@ -370,6 +378,7 @@ public class GUI {
         data.add(year);
         JTextField yearoutput = new JTextField(thevehicle.getYear());
         yearoutput.setFont(adminidoutput.getFont());
+        yearoutput.setEditable(false);
         data.add(yearoutput);
         //TYPE
         JLabel type = new JLabel("Type:");
@@ -377,6 +386,7 @@ public class GUI {
         data.add(type);
         JTextField typeoutput = new JTextField(thevehicle.getType());
         typeoutput.setFont(adminidoutput.getFont());
+        typeoutput.setEditable(false);
         data.add(typeoutput);
         //METHOD
         JLabel method = new JLabel("Method:");
@@ -384,6 +394,7 @@ public class GUI {
         data.add(method);
         JTextField methodoutput = new JTextField(thevehicle.getMethod());
         methodoutput.setFont(adminidoutput.getFont());
+        methodoutput.setEditable(false);
         data.add(methodoutput);
         //Close button
         JButton close = new JButton("Close");

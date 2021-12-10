@@ -37,14 +37,14 @@ public class DisplayAllProfile extends JFrame {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (!hasFilter){
+                    customerList = getFilter(adminField.getText(), customerList);
+                    hasFilter = !hasFilter;
+                }
                 if (index >= customerList.size()){
                     DisplayAllProfile.super.setVisible(false);
                     new Status("No More Customer!");
                     return;
-                }
-                if (!hasFilter){
-                    customerList = getFilter(adminField.getText(), customerList);
-                    hasFilter = !hasFilter;
                 }
                 adminField.setText(customerList.get(index).getAdminID());
                 fNameField.setText(customerList.get(index).getFirstName());
