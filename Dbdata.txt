@@ -6,4 +6,5 @@ PA2 Roosevelt Intan 1001-Brown-Ave 8126742233 60000.0 Inactive Both Ford 2018 Se
 PA1 Safa Javi 6007-Research-Ave 8259841623 400000.0 Active Personal Ferrari 2022 Sport New
 PA1 Jae Remy 123 Karvec 1.2345678E7 1.2345678E7 Active Personal X 2022 luxury
 PA1 Jaellie Remy 777-Mylane 12345652 9876541.0 Active Both Y 2021 luxury Used
-PA2 Jack Do 123 asdf 803029439 300000.0 Active Personal X 2021 sport Cash
+PA2 Jack Do 123 asdf 8.0302944E8 300000.0 Active Personal X 2021 sport
+PA1 Bower Luc 1213-sfasfdd 135846463 1.3487698E7 Active Busenisse C 1230 sedan New

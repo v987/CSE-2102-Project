@@ -60,6 +60,7 @@ public class Update extends JFrame{
                 }
                 db.writeAllCustomerProf();
                 new Status("Update Completed!");
+                GUI.customerdb.writeAllCustomerProf();
                 Update.super.setVisible(false);
             }
         });

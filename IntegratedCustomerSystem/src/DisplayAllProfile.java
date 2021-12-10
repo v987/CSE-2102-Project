@@ -19,6 +19,8 @@ public class DisplayAllProfile extends JFrame {
     private JTextField methodField;
     private JPanel Jpanel;
     private int index = 0;
+    private boolean hasFilter = false;
+    private ArrayList<CustomerProf> customerList;
 
     public DisplayAllProfile(CustomerProfDB db){
         setContentPane(Jpanel);
@@ -26,7 +28,7 @@ public class DisplayAllProfile extends JFrame {
         setSize(550, 650);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-        ArrayList<CustomerProf> customerList = db.getCustomerList();
+        customerList = db.getCustomerList();
 
         nextProfileButton.addActionListener(new ActionListener() {
             /**
@@ -39,6 +41,10 @@ public class DisplayAllProfile extends JFrame {
                     DisplayAllProfile.super.setVisible(false);
                     new Status("No More Customer!");
                     return;
+                }
+                if (!hasFilter){
+                    customerList = getFilter(adminField.getText(), customerList);
+                    hasFilter = !hasFilter;
                 }
                 adminField.setText(customerList.get(index).getAdminID());
                 fNameField.setText(customerList.get(index).getFirstName());
@@ -56,5 +62,15 @@ public class DisplayAllProfile extends JFrame {
             }
         });
     }
+    private ArrayList<CustomerProf> getFilter(String text, ArrayList<CustomerProf> customerList) {
+        ArrayList<CustomerProf> customer = new ArrayList<>();
+        for(CustomerProf c : customerList){
+            if (c.getAdminID().equals(text)){
+                customer.add(c);
+            }
+        }
+        return customer;
+    }
+
     public static void main(String []args){new DisplayAllProfile(new CustomerProfDB("Dbdata.txt"));}
 }

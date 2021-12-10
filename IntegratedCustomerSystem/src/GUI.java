@@ -93,7 +93,6 @@ public class GUI {
         mainframe.setVisible(true);
     }
 
-
     void createProfile()
     {
         CreateProfile profile = new CreateProfile();
@@ -200,7 +199,6 @@ public class GUI {
     void updateProfile()
     {
         UpdateProfile uf = new UpdateProfile(customerdb);
-        customerdb = new CustomerProfDB(filepath);
     }
 
     void findProfile()
@@ -422,20 +420,5 @@ public class GUI {
         //String filepath = "D:/db.txt";
         GUI thegui = new GUI(filepath);
         in.close();
-        /*
-        JFrame frame = new JFrame("JFrame Example");
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
-        JLabel label = new JLabel("JFrame By Example");
-        JButton button = new JButton();
-        button.setText("Button");
-        panel.add(label);
-        panel.add(button);
-        frame.add(panel);
-        frame.setSize(200, 300);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-         */
     }
 } 
