@@ -30,6 +30,7 @@ public class Update extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String value = valueField.getText();
                 CustomerProf customer = db.findProfile(lastName, admin);
+                if (customer == null){new Status("Customer Does not Exist!"); return;}
                 switch(field){
                     case "Address":
                         customer.updateAddress(value);
