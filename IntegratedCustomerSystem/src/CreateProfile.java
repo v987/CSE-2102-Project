@@ -21,13 +21,13 @@ public class CreateProfile extends JFrame{
 
     public CreateProfile() {
         //this.addressField = addressField;
-        typeField.addItem("sedan");
-        typeField.addItem("hatchback");
-        typeField.addItem("luxury");
-        typeField.addItem("sport");
-        typeField.addItem("other");
+        typeField.addItem("Sedan");
+        typeField.addItem("Hatchback");
+        typeField.addItem("Luxury");
+        typeField.addItem("Sport");
+        typeField.addItem("Other");
 
-        useField.addItem("Busenisse");
+        useField.addItem("Business");
         useField.addItem("Personal");
         useField.addItem("Both");
 
@@ -35,7 +35,7 @@ public class CreateProfile extends JFrame{
         statusField.addItem("Inactive");
 
         methodField.addItem("New");
-        methodField.addItem("Certified Pre-own");
+        methodField.addItem("Certified Pre-owned");
         methodField.addItem("Used");
         methodField.addItem("Other");
 
@@ -43,8 +43,6 @@ public class CreateProfile extends JFrame{
         setTitle("Creating Profile");
         setSize(350, 550);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        methodField.addItem("Cash");
-        methodField.addItem("Finance");
         setVisible(true);
         submitButton.addActionListener(new ActionListener() {
             /**
